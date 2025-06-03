@@ -1,4 +1,4 @@
-package com.example.dsa_practice2025.array;
+package com.example.dsa_practice2025.sort;
 
 import java.util.Arrays;
 

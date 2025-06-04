@@ -15,19 +15,34 @@ public class RemoveAllOccurencesOfString
 
     public static String removeOccurrences(String s, String part) {
         /**
-         *  BRUTE FORCE
-         *  TIME COMPLEXITY - O(N*M) i.e O(N^2)
+         *  TIME COMPLEXITY - O(N²), due to O(N/M) iterations with O(N * M) cost each, primarily from string searches and concatenations.
+         *  SPACE COMPLEXITY - O(N), for temporary strings created during substring and concatenation operations.
+         *
+         *  partStartIndex will be start occurence of part in s string
+         *  iteration 1
+         *  1]partStartIndex will be 2
+         *  part.length() 2 so
+         *  2]it will assign string start from index 4 to end of string s to str
+         *  3]s.substring(0,partStartIndex)+str
+         *  here this is inclusive,
+         *  str is exclusive
+         * beginIndex = 0 (inclusive, starts at 'd').
+         * endIndex = 2 (exclusive, stops before index 2, which is 'a').
          */
-        int partLen = part.length();
-        while(s.contains(part)) {
-            s = s.replaceAll(part,"");
+        while(s.contains(part)){
+            int partStartIndex=s.indexOf(part);
+            String str = s.substring(partStartIndex + part.length());
+            s=s.substring(0,partStartIndex)+str;
         }
         return s;
+
     }
 
 
     public static String removeOccurrences1(String s, String part) {
         /**
+         *
+         *  BETTER NOT OPTIMAL
          *  TIME COMPLEXITY - O(N)
          *  SPACE COMPLEXITY - O(N)
          *  algorithm:

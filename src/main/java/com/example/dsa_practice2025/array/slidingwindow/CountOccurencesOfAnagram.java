@@ -6,11 +6,60 @@ import java.util.Map;
 public class CountOccurencesOfAnagram
 {
     public static void main(String[] args) {
-        System.out.println(occurencesOfAnagram("for","forxxorfxdofr"));
+        System.out.println(occurrencesOfAnagram1("for","forxxorfxdofr"));
     }
 
 
-    public static int occurencesOfAnagram(String pat,String txt) {
+
+    public static int occurrencesOfAnagram(String pat, String txt) {
+        /**
+         * Brute Force Approach
+         *
+         * Time Complexity: O(N * K) - For each substring of length K, we compute its frequency map.
+         * Space Complexity: O(K) - For the frequency maps of pat and each substring.
+         *
+         * Algorithm:
+         * 1. Create a frequency map for the pattern string pat.
+         * 2. Iterate through each possible substring of txt with length equal to pat.length().
+         * 3. For each substring, create a frequency map and compare it with pat's frequency map.
+         * 4. If the frequency maps match, increment the count of anagrams.
+         * 5. Return the total count of anagrams.
+         */
+        // Create frequency map for pattern
+        Map<Character, Integer> patFreq = new HashMap<>();
+        for (char c : pat.toCharArray()) {
+            patFreq.put(c, patFreq.getOrDefault(c, 0) + 1);
+        }
+
+        int n = txt.length();
+        int k = pat.length();
+        int ans = 0;
+
+        // Iterate through each possible substring starting index
+        for (int i = 0; i <= n - k; i++) {
+            // Create frequency map for the current substring
+            Map<Character, Integer> windowFreq = new HashMap<>();
+            for (int j = i; j < i + k; j++) {
+                char c = txt.charAt(j);
+                windowFreq.put(c, windowFreq.getOrDefault(c, 0) + 1);
+            }
+
+            // Compare frequency maps
+            if (windowFreq.equals(patFreq)) {
+                ans++;
+            }
+        }
+
+        return ans;
+    }
+
+
+
+    public static int occurrencesOfAnagram1(String pat,String txt) {
+        /**
+         *  TC - O(N) + O(N)
+         *  SC - O(N)
+         */
         Map<Character,Integer> freqMap = new HashMap<>();
         for(int i = 0; i < pat.length(); i++)
             freqMap.put(pat.charAt(i),freqMap.getOrDefault(pat.charAt(i),0)+1);

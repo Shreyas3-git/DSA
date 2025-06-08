@@ -3,11 +3,31 @@ package com.example.dsa_practice2025.array.slidingwindow;
 public class LargestSubarrayOfSumK
 {
     public static void main(String[] args) {
-        System.out.println(largestSubarrayOfSum(new int[] {4,1,1,1,2,3,5},7,5));
+        System.out.println(largestSubarrayOfSum1(new int[] {4,1,1,1,2,3,5},7,5));
     }
 
 
-    public static int largestSubarrayOfSum(int[] arr,int n,int k) {
+    public static int largestSubarrayOfSum(int[] arr, int n, int k) {
+        /**
+         *  TC - O(N^3)
+         */
+        int max = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {
+                int sum = 0;
+                for (int t = i; t <= j; t++) {     // compute sum of arr[i..j]
+                    sum += arr[t];
+                }
+                if (sum == k) {
+                    max = Math.max(max, j - i + 1);
+                }
+            }
+        }
+        return max;
+    }
+
+
+    public static int largestSubarrayOfSum1(int[] arr,int n,int k) {
         /**
          *  arr = [4,1,1,1,2,3,5]
          *  TC - O(N) * O(N*I)

@@ -2,11 +2,37 @@ package com.example.dsa_practice2025.array.slidingwindow;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Set;
 
 public class LongestSubstringWithoutRepeatingCharacters
 {
     public static void main(String[] args) {
         System.out.println(lengthOfLongestSubstring("pwwkew"));
+    }
+
+
+    public static int lengthOfLongestSubstringBrute(String s) {
+        /**
+         *  TC - O(N^2)
+         *  SC - O(N)
+         */
+        int maxLength = 0;
+        int n = s.length();
+
+        for (int i = 0; i < n; i++) {
+            Set<Character> set = new HashSet<>();
+            for (int j = i; j < n; j++) {
+                char c = s.charAt(j);
+                if (set.contains(c)) {
+                    break;
+                } else {
+                    set.add(c);
+                    maxLength = Math.max(maxLength, j - i + 1);
+                }
+            }
+        }
+
+        return maxLength;
     }
 
 

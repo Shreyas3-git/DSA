@@ -49,19 +49,12 @@ public class MagicSquare
         if(diagonalSum1 != diagonalSum2)
             return "NO";
         for(int i = 0; i < n; i++) {
-            int rowSum = 0;
-            for(int j = 0; j < n; j++) {
-                rowSum += grid[j][i];
+            int sum = 0,sum2 = 0;
+            for(int j = 0; j < grid[0].length; j++) {
+                sum += grid[i][j];
+                sum2 += grid[j][i];
             }
-            if(diagonalSum1 != rowSum)
-                return "NO";
-        }
-        for(int i = 0; i < n; i++) {
-            int columnSum = 0;
-            for(int j = 0; j < n; j++) {
-                columnSum += grid[i][j];
-            }
-            if(diagonalSum1 != columnSum)
+            if(sum2 != sum || sum != diagonalSum1)
                 return "NO";
         }
         return "YES";

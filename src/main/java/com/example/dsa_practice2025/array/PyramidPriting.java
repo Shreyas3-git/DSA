@@ -10,9 +10,8 @@ public class PyramidPriting
         int n = sc.nextInt();
 
         String[] pattern = pyramidPrinting(n);
-
         for (int i = 0; i < n; i++)
-            System.out.println(pattern[i]);
+            System.out.println("\t"+pattern[i]);
 
     }
 
@@ -43,22 +42,21 @@ public class PyramidPriting
          *  4)end loop
          *  5)return str
          */
-         String[] arr = new String[n];
-         for(int i = 0; i < n; i++) {
-             StringBuilder builder = new StringBuilder();
-             int spaceLen = n-i-1;
-             for(int space = 0; space < spaceLen; space++) {
-                 builder.append("  ");
-             }
-             for(int j = 0; j <= i; j++) {
-                 builder.append("*");
-                 if (j < i) {
-                     builder.append("   ");
-                 }
-             }
-             arr[i] = builder.toString();
-         }
-         return arr;
+        String[] answer = new String[n];
+        for(int i = 0; i < n; i++) {
+            StringBuilder builder = new StringBuilder();
+            int spaceLen = n-i-1;
+            for(int space = 0;space < spaceLen; space++) {
+                builder.append("  ");
+            }
+            for(int j = 0; j <= i; j++) {
+                builder.append("*");
+                if(j < i)
+                    builder.append("   ");
+            }
+            answer[i] = builder.toString();
+        }
+        return answer;
     }
 
 }

@@ -29,18 +29,15 @@ public class Capitalise
          */
 
         StringBuilder builder = new StringBuilder();
-        char ch = str.charAt(0);
-        int asci =  ch - 32;
-        ch = (char) asci;
-        builder.append(ch);
-        for(int i = 1; i < str.length(); i++) {
-            char cur = str.charAt(i);
-            if(str.charAt(i-1) == ' ' && cur >= 'a' && cur <= 'z')
-                builder.append((char) (cur-32));
-            else
-                builder.append(cur);
+        int ascci = str.charAt(0) - 32;
+        builder.append((char)ascci);
+        for(int i = 1; i < str.length()-1; i++) {
+            if(str.charAt(i-1) == ' ' && str.charAt(i) >= 'a' && str.charAt(i) <= 'z') {
+                ascci = str.charAt(i) - 32;
+                builder.append((char)ascci);
+            } else
+                builder.append(str.charAt(i));
         }
         return builder.toString();
-
     }
 }

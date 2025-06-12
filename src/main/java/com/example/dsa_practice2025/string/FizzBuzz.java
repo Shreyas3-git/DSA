@@ -26,17 +26,17 @@ public class FizzBuzz
          *   8)return result
          */
 
-        String[] out = new String[n];
-        for (int i = 0;i < n; i++) {
-            if ((i+1)%3 == 0 && (i+1) % 5 == 0)
-                out[i] = "FIZZBUZZ";
-            else if ((i+1) % 3 == 0)
-                out[i] = "FIZZ";
-            else if ((i+1) % 5 == 0)
-                out[i] = "BUZZ";
+        String[] answer = new String[n];
+        for(int i = 1; i <= n; i++) {
+            if(i % 3 == 0 && i % 5 == 0)
+                answer[i-1] = "FIZZBUZZ";
+            else if(i % 3 == 0)
+                answer[i-1] = "FIZZ";
+            else if(i % 5 == 0)
+                answer[i-1] = "BUZZ";
             else
-                out[i] = String.valueOf(i+1);
+                answer[i-1] = String.valueOf(i);
         }
-        return out;
+        return answer;
     }
 }

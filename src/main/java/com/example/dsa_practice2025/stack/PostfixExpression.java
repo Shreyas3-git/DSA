@@ -31,30 +31,32 @@ public class PostfixExpression
          *  7)return stack peek element
          */
         Stack<Integer> stack = new Stack<>();
-        for(char token : expression.toCharArray()) {
-            if(!isOperator(token))
-                stack.push(Integer.parseInt(String.valueOf(token)));
-            else {
-                int operand1 = stack.pop();
-                int operand2 = stack.pop();
-                stack.push(evalute(operand1,operand2,token));
+        for(char cur : expression.toCharArray()) {
+            if(isOperator(cur)) {
+                int operator1 = stack.pop();
+                int operator2 = stack.pop();
+                int result = evalute(operator1,operator2,cur);
+                stack.push(result);
+            } else {
+                stack.push(cur - '0');
             }
         }
-        return stack.peek();
+        return stack.pop();
     }
 
 
     public static int evalute(int operand1,int operand2,char operator) {
-        return switch (operator) {
-            case '-' -> operand1 - operand2;
-            case '+' -> operand1 + operand2;
-            case '*' -> operand1 * operand2;
-            case '/' -> operand1 / operand2;
-            default -> Integer.MIN_VALUE;
-        };
+        int result = 0;
+        switch (operator) {
+            case '+' -> result = operand1 + operand2;
+            case '-' -> result = operand1 - operand2;
+            case '*' -> result = operand1 * operand2;
+            case '/' -> result = operand1 / operand2;                  
+        }
+        return result;
     }
 
     public static boolean isOperator(char ch) {
-        return ch == '*' || ch == '/' || ch == '+' || ch == '-';
+        return ch == '+' || ch == '-' || ch == '*' || ch == '/';
     }
 }

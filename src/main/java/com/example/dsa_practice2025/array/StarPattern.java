@@ -29,14 +29,14 @@ public class StarPattern
          *  8)end loop
          *  9)return result
          */
-        String[] star = new String[n];
+        String[] answer = new String[n];
         for(int i = 0; i < n; i++) {
             StringBuilder builder = new StringBuilder();
-            for(int j = 0; j <= i; j++) {
-                builder.append("* ");
+            for(int j = 0; j < i; j++) {
+                builder.append("*"+"\t");
             }
-            star[i] = builder.toString().trim();
+            answer[i] = builder.toString();
         }
-        return star;
+        return answer;
     }
 }

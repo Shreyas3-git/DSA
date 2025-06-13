@@ -16,17 +16,22 @@ public class OddEvenLinkedList
     }
 
     public static ListNode oddEvenList(ListNode head) {
-        if(head == null)
-            return head;
+        /**
+         *   e.g -
+         *   2->1->3->5->6->4->7->NULL
+         *   return odd index node then even index node
+         *   2->3->6->7->
+         *   1->5->4
+         *   result -
+         *   2->3->6->7->1->5->4-NULL
+         */
         ListNode odd = head;
         ListNode even = head.next;
         ListNode evenHead = even;
-
         while(even != null && even.next != null) {
-            odd.next = odd.next.next;
+            odd.next = even.next;
             odd = odd.next;
-
-            even.next = even.next.next;
+            even.next = odd.next;
             even = even.next;
         }
         odd.next = evenHead;

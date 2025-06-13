@@ -32,17 +32,17 @@ public class MostFrequent
          *  8)return result
          */
         Map<Character,Integer> map = new HashMap<>();
-        int maxFreq = 0;
+        int count = 0;
         char maxChar = '\0';
-        for(Character curr : s.toCharArray()) {
-            map.put(curr,map.getOrDefault(curr,0)+1);
-            if(maxFreq == map.get(curr) && maxChar > curr) {
-                maxChar = curr;
-            } else if(maxFreq < map.get(curr)) {
-                maxFreq = map.get(curr);
-                maxChar = curr;
+        for(Character ch : s.toCharArray()) {
+            map.put(ch,map.getOrDefault(ch,0)+1);
+            if(count < map.get(ch)) {
+                count = map.get(ch);
+                maxChar = ch;
+            } else if(count == map.get(ch) && maxChar > ch) {
+                maxChar = ch;
             }
         }
-        return new Object[]{maxChar,maxFreq};
+        return new Object[]{maxChar,count};
     }
 }

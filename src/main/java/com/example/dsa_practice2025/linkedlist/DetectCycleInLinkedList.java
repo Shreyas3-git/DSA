@@ -22,6 +22,17 @@ public class DetectCycleInLinkedList
     // youtube link - https://www.youtube.com/watch?v=-1E8ZMS0gSs
 
     public static boolean hasCycle(ListNode head) {
+        /**
+         *  algorithm :
+         *  1)declare slow,fast pointer with head
+         *  2)iterate till fast != null and fast.next != null to avoid even length and odd length LL null pointer exception
+         *  3)move slow by 1 node
+         *  4)move fast by2 nodes
+         *  5)check slow == fast
+         *      return true
+         *  6)end loop
+         *  7)return false
+         */
         ListNode slow = head;
         ListNode fast = head;
         while(fast != null && fast.next != null) {

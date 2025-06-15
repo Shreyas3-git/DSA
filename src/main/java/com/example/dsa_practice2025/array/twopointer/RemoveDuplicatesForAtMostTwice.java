@@ -17,29 +17,29 @@ public class RemoveDuplicatesForAtMostTwice
          *  result = [0,0,1,1,2,1,2,3,3]
          *  algorithm:
          *  1)declare currentIndex,duplicates init 0
-         *  2)iterate array
-         *  3)checl arr[CI] != arr[i]
-         *      store element at CI
-         *      move CI
-         *      make duplicates 0
-         *   4)otherwise check duplicates <= 1
-         *      store element at CI
-         *      move CI
+         *  2)iterate array from 1 to n
+         *      -check arr[CI] != arr[i]
+         *         duplicate = 0
+         *      -otherwise
+         *          duplicate++
+         *      -duplicate <= 1
+         *          currentIndex++
+         *          arr[currentIndex] = arr[i]
          *   5)end loop
-         *   6)return array copy from 0th index to currentIndex
+         *   6)return array copy from 0th index to currentIndex+1
          */
-        int currentIndex = 0,duplicates = 0;
-        for(int i = 0; i < arr.length; i++) {
-            if(arr[currentIndex] != arr[i])
-                duplicates = 0;
+        int currentIndex = 0,duplicate = 0, n= arr.length;
+        for(int i = 1; i < n; i++) {
+            if( arr[currentIndex] != arr[i])
+                duplicate = 0;
             else
-                duplicates++;
-            if(duplicates <= 1) {
-                arr[currentIndex] = arr[i];
+                duplicate++;
+            if(duplicate <= 1) {
                 currentIndex++;
+                arr[currentIndex] = arr[i];
             }
         }
-        return Arrays.copyOfRange(arr,0,currentIndex);
+        return Arrays.copyOfRange(arr,0,currentIndex+1);
     }
 }
 

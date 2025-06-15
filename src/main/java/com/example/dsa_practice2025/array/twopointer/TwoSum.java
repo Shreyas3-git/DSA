@@ -7,10 +7,10 @@ import java.util.Map;
 public class TwoSum
 {
     public static void main(String[] args) {
-        int[] arr = {5,2,11,7,15};
+        int[] arr = {2,7,11,13,15};
         System.out.println(Arrays.toString(twoSum(arr,9)));
         System.out.println(Arrays.toString(twoSum1(arr,9)));
-        int[] arr2 = {5,2,11,7,15};
+        int[] arr2 = {2,7,11,15};
         System.out.println(Arrays.toString(twoSum2(arr2,9)));
     }
 

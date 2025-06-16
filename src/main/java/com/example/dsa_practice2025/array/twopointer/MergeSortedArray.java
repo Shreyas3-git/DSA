@@ -45,9 +45,9 @@ public class MergeSortedArray
          *           0 1 2
          *   arr2 = [2,5,6]
          */
-        int i = n-1,j = m-1, k = n+m-1;
-        while(j >= 0) {
-            if(i >= 0 && arr1[i] > arr2[j]) {
+        int i = n-1, j = m-1, k = (n+m)-1;
+        while (j >= 0) {
+            if(arr1[i] > arr2[j]) {
                 arr1[k] = arr1[i];
                 i--;
             } else {

@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class ClosestTripletSum
 {
     public static void main(String[] args) {
-        System.out.println(threeSumClosest(new int[] {-1,2,1,-4},1));
+        System.out.println(threeSumClosest(new int[] {4,-2,1,-5,3,0,-1,2,-4,6},10));
     }
 
     static int threeSumClosest(int[] arr, int target) {
@@ -33,20 +33,19 @@ public class ClosestTripletSum
          *  13)return answer
          */
         Arrays.sort(arr);
-        int closestSum = Integer.MIN_VALUE,mindiff = Integer.MAX_VALUE;
-        for(int i = 0; i < arr.length-2; i++) {
-            int left = i+1,right = arr.length-1;
-
+        int n = arr.length,closestSum = Integer.MIN_VALUE,diff = Integer.MAX_VALUE;
+        for(int i = 0; i < n; i++) {
+            int left = i+1,right = n-1;
             while(left < right) {
-                int currentSum = arr[i] + arr[left] + arr[right];
-                int diff = Math.abs(currentSum-target);
-                if(diff < mindiff || diff == mindiff && currentSum > closestSum) {
-                    closestSum = currentSum;
-                    mindiff = diff;
+                int sum = arr[i]+arr[left]+arr[right];
+                int currentDiff = Math.abs(target - sum);
+                if(currentDiff < diff || diff == currentDiff && sum > closestSum) {
+                    diff = currentDiff;
+                    closestSum = sum;
                 }
-                if(currentSum == target)
-                    return currentSum;
-                else if(currentSum < target)
+                if(sum == target)
+                    return sum;
+                else if(sum < target)
                     left++;
                 else
                     right--;

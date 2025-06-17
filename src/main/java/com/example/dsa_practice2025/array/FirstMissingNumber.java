@@ -37,14 +37,12 @@ public class FirstMissingNumber
          *  SPACE COMPLEXITY - O(N)
          */
         Set<Integer> set = new HashSet<>();
+        for(int num : arr)
+            set.add(num);
         int n = arr.length;
-        for(int i = 0; i < n; i++) {
-            set.add(arr[i]);
-        }
-        for(int i = 1;i <= n; i++) {
-            if(!set.contains(i)) {
-                return i;
-            }
+        for(int i = 1; i < n; i++) {
+            if(!set.contains(i))
+                return i+1;
         }
         return n+1;
     }
@@ -70,8 +68,8 @@ public class FirstMissingNumber
          */
         int n = arr.length;
         for(int i = 0; i < n; i++) {
-            while(arr[i] >= 1 && arr[i] <= n && arr[arr[i]-1] != arr[i]) {
-                swap(arr[i]-1,i,arr);
+            while(arr[i] >= 1 && arr[i] < n && arr[i] != arr[arr[i-1]]) {
+                swap(arr,i,arr[i]-1);
             }
         }
         for(int i = 0; i < n; i++) {
@@ -82,9 +80,10 @@ public class FirstMissingNumber
     }
 
 
-    public static void swap(int a,int b,int[] arr) {
-        int temp = arr[a];
-        arr[a] = arr[b];
-        arr[b] = temp;
+    public static void swap(int[] arr,int x,int y) {
+        int temp = arr[x];
+        arr[x] = arr[y];
+        arr[y] = temp;
     }
+
 }

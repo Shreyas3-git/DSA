@@ -1,10 +1,10 @@
-package com.example.dsa_practice2025.string;
+package com.example.dsa_practice2025.hashing;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GroupAnagram {
+public class ValidAnagram {
     public static void main(String[] args) {
         System.out.println(validAnagram2("anagram","nagaram"));
     }
@@ -37,14 +37,14 @@ public class GroupAnagram {
         /**
          *  BETTER APPROACH - O(NlogN)
          */
-        if (s.length() != t.length())
+        if(s.length() != t.length())
             return false;
         char[] chars1 = s.toCharArray();
         char[] chars2 = t.toCharArray();
         Arrays.sort(chars1);
         Arrays.sort(chars2);
-        for (int i = 0; i < chars1.length; i++) {
-            if (chars1[i] != chars2[i])
+        for(int i = 0;i < s.length(); i++) {
+            if(chars1[i] != chars2[i])
                 return false;
         }
         return true;
@@ -58,20 +58,19 @@ public class GroupAnagram {
          */
         if(s.length() != t.length())
             return false;
-        Map<Character,Integer> freqMap = new HashMap<>();
-        for(char chars : s.toCharArray())
-            freqMap.put(chars, freqMap.getOrDefault(chars,0)+1);
-
+        Map<Character,Integer> map = new HashMap<>();
+        for(char x : s.toCharArray())
+            map.put(x,map.getOrDefault(x,0)+1);
         for(int i = 0; i < t.length(); i++) {
-            char cur = t.charAt(i);
-            if(freqMap.containsKey(cur)) {
-                freqMap.put(cur, freqMap.get(cur)-1);
-                if(freqMap.get(cur) == 0)
-                    freqMap.remove(cur);
+            if(map.containsKey(t.charAt(i))) {
+                char cur = t.charAt(i);
+                map.put(cur,map.get(cur)-1);
+                if(map.get(cur) == 0)
+                    map.remove(cur);
             } else
                 return false;
         }
-        return freqMap.isEmpty();
+        return true;
     }
 
 }

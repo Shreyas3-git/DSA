@@ -1,4 +1,4 @@
-package com.example.dsa_practice2025.string;
+package com.example.dsa_practice2025.hashing;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,16 +26,17 @@ public class StringPermutationCanFormPalindrome
          * hello is not a permutation of any palindrome
          * Aab is not a permutation of any palindrome
          */
-        Map<Character,Integer> map = new HashMap<>();
-        for(Character chars : s.toCharArray())
-            map.put(chars,map.getOrDefault(chars,0)+1);
-
+        Map<Character,Integer> freqMap = new HashMap<>();
+        for(Character ch : s.toCharArray())
+            freqMap.put(ch,freqMap.getOrDefault(ch,0)+1);
         int oddCount = 0;
-        for(Map.Entry<Character,Integer> entry : map.entrySet()) {
-            if(entry.getValue() % 2 != 0)
+        for(Map.Entry<Character,Integer> map : freqMap.entrySet()) {
+            if(map.getValue() % 2 != 0) {
                 oddCount++;
-            if(oddCount  > 1)
-                return false;
+                if(oddCount > 1)
+                    return false;
+            }
+
         }
         return true;
     }

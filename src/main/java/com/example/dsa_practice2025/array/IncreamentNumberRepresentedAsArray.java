@@ -13,7 +13,7 @@ public class IncreamentNumberRepresentedAsArray
         /**
          *  algorithm:
          *  1)add 1 in n-1 place
-         *  2)declare sum,carry init 0
+         *  2)declare sum to 0,carry init 1
          *  3)iterate n-1 to 0
          *      1]cal sum = carry + arr[i]
          *      2]update arr[i] = sum % 10
@@ -26,8 +26,7 @@ public class IncreamentNumberRepresentedAsArray
          *  7)new_arr[0] = carry
          *  8)return new_arr
          */
-        arr[n-1] = 1 + arr[n-1];
-        int sum = 0, carry = 0;
+        int sum = 0,carry = 1;
         for(int i = n-1; i >= 0; i--) {
             sum = carry + arr[i];
             arr[i] = sum % 10;

@@ -15,16 +15,30 @@ public class RotateImageBy90
 
 
     public static int[][] rotateImage(int[][] mat) {
-        transponse(mat);
-        reverse(mat);
+        /**
+         *  algorithm:
+         *  step - 1,2,3 is transpose of matrix
+         *  1)iterate row 0 to n
+         *  2)iterate col i+1 to n
+         *  3)swap mat with row,col to col,row
+         *  4)end loop
+         *  5)declare left init 0,right init n-1,row init 0
+         *  6)iterate till left < right
+         *  7)swap mat row,left with row,right
+         *  8)left++,right--
+         *  9)check row < n-1 and left >= right
+         *      row++,left = 0,right=n-1
+         *  10)end loop
+         */
+        transpose(mat);
+        reverse(mat,mat.length);
         return mat;
     }
 
-
-    public static void transponse(int[][] mat) {
-        for(int row = 0;row < mat.length; row++) {
-            for(int col = row; col < mat[0].length; col++) {
-                swap(mat,row,col,col,row);
+    public static void transpose(int[][] mat) {
+        for(int i = 0; i < mat.length; i++) {
+            for(int j = i+1; j < mat[0].length; j++) {
+                swap(mat,i,j,j,i);
             }
         }
     }
@@ -35,19 +49,18 @@ public class RotateImageBy90
         mat[r2][c2] = temp;
     }
 
-    public static void reverse(int[][] mat) {
-        int rowSize = mat.length;
-        int left = 0,right = rowSize-1,row = 0;
+
+    public static void reverse(int[][] mat,int n) {
+        int left = 0, right = n-1,row = 0;
         while(left < right) {
             swap(mat,row,left,row,right);
             left++;
             right--;
-            if(row < rowSize-1 && left >= right) {
+            if(row < n-1 && left >= right) {
                 row++;
                 left = 0;
-                right = mat.length-1;
+                right = n-1;
             }
         }
     }
-
 }

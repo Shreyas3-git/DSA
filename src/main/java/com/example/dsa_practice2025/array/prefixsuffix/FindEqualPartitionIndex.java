@@ -2,7 +2,7 @@ package com.example.dsa_practice2025.array.prefixsuffix;
 
 public class FindEqualPartitionIndex {
     public static void main(String[] args) {
-        System.out.println(equalPartition1(10, new long[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}));
+        System.out.println(equalPartition1(5, new long[]{1, 2, 3, 4, 6}));
     }
 
 
@@ -29,7 +29,7 @@ public class FindEqualPartitionIndex {
 
     static int equalPartition1(int n, long arr[]) {
         /**
-         *  BETTER APPROACH-
+         *  OPTIMUM APPROACH-
          *  TIME COMPLEXITY - O(N)
          *  SPACE COMPLEXITY - O(N) + O(N)
          *  arr = [1,4,7,5]
@@ -49,19 +49,19 @@ public class FindEqualPartitionIndex {
          *  8)end loop
          *  9)return -1
          */
-        long[] prefix = new long[n];
-        long[] suffix = new long[n];
-        for (int i = 0; i < n; i++) {
-            if (i == 0) prefix[i] = arr[i];
-            else prefix[i] = prefix[i - 1] + arr[i];
+        long[] prefixSum = new long[n];
+        long[] suffixSum = new long[n];
+        prefixSum[0] = arr[0];
+        suffixSum[n-1] = arr[n-1];
+        for(int i = 1; i < n; i++) {
+            prefixSum[i] =  prefixSum[i-1] + arr[i];
         }
-        for (int i = n - 1; i >= 0; i--) {
-            if (i == n - 1) suffix[n - 1] = arr[i];
-            else suffix[i] = suffix[i + 1] + arr[i];
+        for(int i = n-2; i >= 0; i--) {
+            suffixSum[i] = suffixSum[i+1] + arr[i];
         }
 
-        for (int i = 0; i < n; i++) {
-            if (prefix[i] == suffix[i])
+        for(int i = 0; i < n; i++) {
+            if(prefixSum[i] == suffixSum[i])
                 return i;
         }
         return -1;

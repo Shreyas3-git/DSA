@@ -1,10 +1,10 @@
-package com.example.dsa_practice2025.array.twopointer;
+package com.example.dsa_practice2025.hashing;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TwoSum
+public class TwoSumInUnSortedArray
 {
     public static void main(String[] args) {
         int[] arr = {2,7,11,13,15};

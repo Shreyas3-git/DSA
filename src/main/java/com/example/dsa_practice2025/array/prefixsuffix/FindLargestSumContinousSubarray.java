@@ -40,12 +40,12 @@ public class FindLargestSumContinousSubarray
          *  6)end loop
          *  7)return maxSoFar
          */
-        int maxSoFar = Integer.MIN_VALUE, maxEndingHere = 0;
-        for (int num : arr) {
-            maxEndingHere += num;
-            if (maxEndingHere < num)
-                maxEndingHere = num;
-            if (maxSoFar < maxEndingHere)
+        int maxSoFar = Integer.MIN_VALUE,maxEndingHere = 0;
+        for(int i = 0; i < n; i++) {
+            maxEndingHere += arr[i];
+            if(maxEndingHere < arr[i])
+                maxEndingHere = arr[i];
+            if(maxSoFar < maxEndingHere)
                 maxSoFar = maxEndingHere;
         }
         return maxSoFar;

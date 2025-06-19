@@ -1,12 +1,11 @@
 package com.example.dsa_practice2025.array.slidingwindow;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CountOccurencesOfAnagram
 {
     public static void main(String[] args) {
-        System.out.println(occurrencesOfAnagram1("for","forxxorfxdofr"));
+        System.out.println(search("for","forxxorfxdofr"));
     }
 
 
@@ -87,6 +86,41 @@ public class CountOccurencesOfAnagram
             }
         }
         return ans;
+    }
+
+
+    static int search(String pat, String txt) {
+        // code here
+        int left = 0,right = 0,k = pat.length(),n = txt.length(),answer = 0;
+        Map<Character,Integer> freqMap = new HashMap<>();
+        for(int i = 0;i < k; i++)
+            freqMap.put(pat.charAt(i),freqMap.getOrDefault(pat.charAt(i),0)+1);
+        int count = freqMap.size();
+        while(right < n) {
+            char ch = txt.charAt(right);
+            if(freqMap.containsKey(ch)) {
+                if(freqMap.get(ch) > 0) {
+                    freqMap.put(ch,freqMap.get(ch)-1);
+                    count--;
+                }
+            }
+            if(right-left+1 < k)
+                right++;
+            else {
+                if(count == 0)
+                    answer++;
+                char cur = txt.charAt(left);
+                if(freqMap.containsKey(cur)) {
+                    if(freqMap.get(cur) == 0)
+                        count++;
+                    freqMap.put(cur,freqMap.get(cur)+1);
+                }
+                left++;
+                right++;
+            }
+        }
+
+        return answer;
     }
 
 }

@@ -76,26 +76,29 @@ public class FirstNegativeIntegerInEveryWindowOfSizeK
          *  5)end loop
          *  6)return result
          */
-        int i = 0,j = 0;
+        int left = 0,right = 0;
+        long[] answer = new long[n-k+1];
         Queue<Long> queue = new ArrayDeque<>();
-        long[] result = new long[n-k+1];
-        while(j < n) {
-            if(arr[j] < 0)
-                queue.add(arr[j]);
-            if(j-i+1 < k)
-                j++;
-            else if(j-i+1 == k) {
+        while(right < n) {
+            if(arr[right] < 0)
+                queue.offer(arr[right]);
+            if(right-left+1 < k)
+                right++;
+            else {
                 if(queue.isEmpty())
-                    result[i] = 0;
-                else if(queue.peek() == arr[i])
-                    result[i] = queue.poll();
+                    answer[left] = 0;
+                else if(queue.peek() == arr[left])
+                    answer[left] = queue.poll();
                 else
-                    result[i] = queue.peek();
-                i++;
-                j++;
+                    answer[left] = queue.peek();
+                left++;
+                right++;
             }
         }
-        return result;
+        return answer;
     }
+
+
+
 
 }

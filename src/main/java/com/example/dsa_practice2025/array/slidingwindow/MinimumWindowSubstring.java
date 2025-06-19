@@ -46,4 +46,37 @@ public class MinimumWindowSubstring {
         }
         return s.substring(start, end+1);
     }
+
+
+    int search(String pat, String txt) {
+        // code here
+        int left = 0,right = 0,k = pat.length(),n = txt.length(),answer = 0;
+        Map<Character,Integer> freqMap = new HashMap<>();
+        for(int i = 0;i < k; i++)
+            freqMap.put(pat.charAt(i),freqMap.getOrDefault(pat.charAt(i),0)+1);
+        int count = freqMap.size();
+        while(right < n) {
+            char ch = txt.charAt(left);
+            if(freqMap.containsKey(ch)) {
+                freqMap.put(ch,freqMap.get(ch)-1);
+                if(freqMap.get(ch) == 0)
+                    count--;
+            }
+            if(right-left+1 < k)
+                right++;
+            else {
+                if(count == 0)
+                    answer++;
+                if(freqMap.containsKey(txt.charAt(left))) {
+                    if(freqMap.get(txt.charAt(left)) == 0)
+                        count++;
+                    freqMap.put(txt.charAt(left),freqMap.get(txt.charAt(left)+1));
+                }
+                left++;
+                right++;
+            }
+        }
+        return answer;
+    }
+
 }
